@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Frontend (Public Subnet)</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f7fb;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    h1 { color: #333; }
+    input, button {
+      padding: 10px;
+      margin: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    #response {
+      margin-top: 20px;
+      color: #333;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Frontend (Public Subnet)</h1>
+  <input type="text" id="name" placeholder="Enter your name" />
+  <button onclick="sendData()">Send to Backend</button>
+  <div id="response"></div>
+
+  <script>
+    async function sendData() {
+      const name = document.getElementById("name").value;
+      const backendUrl = "http://<PRIVATE-ALB-DNS-or-PRIVATE-ENDPOINT>/api/hello";
+      try {
+        const response = await fetch(backendUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name })
+        });
+        const data = await response.json();
+        document.getElementById("response").innerText = data.message;
+      } catch (err) {
+        document.getElementById("response").innerText = "Error connecting to backend!";
+      }
+    }
+  </script>
+</body>
+</html>
