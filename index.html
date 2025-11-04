@@ -45,7 +45,7 @@
   <script>
     async function sendData() {
       const name = document.getElementById("name").value;
-      const backendUrl = "http://54.193.229.199:5001/api/hello";
+      const backendUrl = "http://127.0.0.1:5001/api/hello";
       try {
         const response = await fetch(backendUrl, {
           method: "POST",
