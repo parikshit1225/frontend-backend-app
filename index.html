@@ -45,7 +45,7 @@
   <script>
     async function sendData() {
       const name = document.getElementById("name").value;
-      const backendUrl = "http://<PRIVATE-ALB-DNS-or-PRIVATE-ENDPOINT>/api/hello";
+      const backendUrl = "http://Test-Alb-ps-1888937335.us-west-1.elb.amazonaws.com/api/hello";
       try {
         const response = await fetch(backendUrl, {
           method: "POST",
